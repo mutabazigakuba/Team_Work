@@ -202,12 +202,6 @@ button {
   font-weight: bold;
 }
 /* write article*/
-#title {
-  padding: 5% 0px 5% 10%;
-}
-#title h1 {
-  font-size: 30px;
-}
 #article {
   padding: 50px 0px 100px 10%;
 }
@@ -218,6 +212,13 @@ button {
   width: 70%;
   border-radius: 2px;
   border: 1px solid #000000;
+}
+/*all articles*/
+#title {
+  padding: 3% 0px 0% 10%;
+}
+#title h1 {
+  font-size: 20px;
 }
 .footer {
   width: 100%;
