@@ -157,9 +157,19 @@ hr {
   min-height: 250px;
 }
 /* signup page */
+a, a:active, a:visited {
+  color: blue;
+  background: #e6e6e6;
+  text-decoration: none;
+}
+a:hover {
+  color: blue;
+  text-decoration: underline;
+}
 #signupSection {
   text-align: center;
   padding: 0px 0px 100px 0px;
+  min-height: 400px;
 }
 #signupSection h2 {
   font-size: 20px;
