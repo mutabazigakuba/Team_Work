@@ -164,8 +164,13 @@ hr {
   min-height: 250px;
 }
 /* signup page */
+
+a:active {
+  color: blue;
+  background: #e6e6e6;
+  text-decoration: none;
+}
 a,
-a:active,
 a:visited {
   color: blue;
   background: #e6e6e6;
