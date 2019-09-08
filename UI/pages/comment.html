@@ -4,16 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Write Article</title>
+    <title>Comment</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css">
     <style>
-        #carousel , #belowTopSection {
-            padding: 0px 10% 0px 10%;
-            text-align: center;
-        }
         #carousel img {
             height: 250px;
+        }
+
+        #article h1 {
+            font-size: 18px;
         }
     </style>
     <script src="main.js"></script>
@@ -26,20 +26,25 @@
     <div class="" id="belowTopSection">
         <div class="" id="navbar">
             <a href="../index.html"> HOME </a>
-            <a href=""> POST </a>
+            <a href="./post.html"> POST </a>
             <a href="./my_articles.html"> MY ARTICLES </a>
             <a href="./all.html"> ARTICLES </a>
         </div>
     </div>
+    <div class="" id="title">
+        <h1> Leave a Reply </h1>
+    </div>
     <div class="" id="article">
         <form action="">
-            <h1> Title </h1>
-            <input type="text" name="" id="" required>
-            <h1> Your Story </h1>
-            <textarea name="" id="" cols="30" rows="20" required></textarea> <br>
-            <button> POST </button>
+            <h1> Comment Here </h1>
+            <textarea name="" id="" cols="20" rows="10" required></textarea> <br>
+            <h1> Name </h1>
+            <input type="text" name="" id="" required> <br>
+            <h1> Email </h1>
+            <input type="email" name="" id="" required> <br>
+            <p style="color: red"> * Your email will not be published </p>
+            <button> Comment </button>
         </form>
-
     </div>
     <footer class="footer">
         <h5> &#169 Team Work
