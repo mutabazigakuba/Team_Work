@@ -42,13 +42,14 @@ body {
 #topSectionRight h3 {
   color: #ffffff;
 }
-#topSectionRight a:active, #topSectionRight a:visited {
+#topSectionRight a:active,
+#topSectionRight a:visited {
   text-decoration: none;
   color: #000000;
   background: #e6e6e6;
 }
 #topSectionRight a:hover {
-  text-decoration: underline
+  text-decoration: underline;
 }
 #navbar {
   padding: 20px 40px 10px 40px;
@@ -57,14 +58,15 @@ body {
   text-decoration: none;
   background: #555;
 }
-#navbar a, a:visited {
+#navbar a,
+a:visited {
   background: #555;
   padding: 20px 40px 10px 40px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
 }
 #navbar a:hover {
-  text-decoration: underline
+  text-decoration: underline;
 }
 #carousel {
   text-align: center;
@@ -102,16 +104,16 @@ body {
 }
 #mainBodyRight {
   width: 35%;
-  padding: 10px
+  padding: 10px;
 }
 #views {
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   padding: 15% 0px 10% 15%;
   border-radius: 3px;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 #views p {
-  background: #FFFFFF;
+  background: #ffffff;
   font-size: 20px;
 }
 #mainBodyRight h4 {
@@ -119,13 +121,13 @@ body {
   font-size: 20px;
 }
 #categories {
-  background: #FFFFFF;
-  border: 1px solid #FFFFFF;
+  background: #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 3px;
   padding: 2% 0px 10% 5%;
 }
 #categories a {
-  background: #FFFFFF;
+  background: #ffffff;
   color: #000000;
 }
 hr {
@@ -151,15 +153,20 @@ hr {
   display: table;
   clear: both;
 }
-#postOne, #postTwo,  #postThree, #postFour {
+#postOne,
+#postTwo,
+#postThree,
+#postFour {
   width: 25%;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 3px;
   margin: 10px;
   min-height: 250px;
 }
 /* signup page */
-a, a:active, a:visited {
+a,
+a:active,
+a:visited {
   color: blue;
   background: #e6e6e6;
   text-decoration: none;
@@ -220,6 +227,54 @@ button {
 #title h1 {
   font-size: 20px;
 }
+/*delete */
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+.popup .close {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  background: #ffffff;
+}
+
+.popup .close:hover {
+  color: #06d85f;
+}
+
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  background: #ffffff;
+}
 .footer {
   width: 100%;
   background: #555;
@@ -228,7 +283,7 @@ button {
   text-align: center;
 }
 .footer h5 {
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 10px 0px 0px 0px;
   background: #555;
 }
