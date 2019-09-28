@@ -120,6 +120,15 @@ const ArticleController = {
             })
         }
     },
+
+    viewAll(req, res) {
+        const articles = ArticleModel.findAll()
+        return res.status(200).send({
+            "status": 200,
+            "message": "success",
+            "data": articles
+        });
+    },
 }
 
 export default ArticleController;

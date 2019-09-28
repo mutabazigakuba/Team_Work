@@ -7,7 +7,7 @@
     "test": "mocha --require @babel/register server/**/**/tests.js --exit",
     "build": "babel server -d build",
     "start": "npm run babel-node server/index.js",
-    "dev-start": "nodemon --exec babel-node server/index.js"
+    "dev": "nodemon --exec babel-node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,8 @@
     "jsonwebtoken": "^8.5.1",
     "mocha": "^6.2.0",
     "moment": "^2.24.0",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "sort-json-array": "^0.1.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
