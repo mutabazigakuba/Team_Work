@@ -50,4 +50,25 @@ describe ('TeamWork', () =>{
                 done()
         })
     })
+
+    describe('CREATE ARTICLE', () =>{
+        it('Return to be JSON', (done) =>{
+            chai.request(app)
+                .post('/api/v1/auth/articles')
+                .end ((req, res) => {expect(res).to.be.json;})
+                done()
+        })
+        it('Return to be Object', (done) =>{
+            chai.request(app)
+                .post('/api/v1/auth/articles')
+                .end ((req, res) => {res.body.should.be.a('object');})
+                done()
+        })
+        it('Return status 405', (done) =>{
+            chai.request(app)
+                .post('/api/v1/auth/articles')
+                .end ((req, res) => {res.should.have.status(405);})
+                done()
+        })
+    })
 })

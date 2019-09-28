@@ -1,10 +1,12 @@
 import express from 'express';
-import User from '../controllers/userModel.js';
+import User from '../controllers/userController.js';
+import Article from '../controllers/articlesController';
 
 const routes = express.Router();
 
 routes.post('/api/v1/auth/signup', User.createNewuser);
 routes.post('/api/v1/auth/signin', User.login);
+routes.post('/api/v1/articles', Article.createArticle);
 routes.get('/', function (req, res) {
     return res.send('Hello TeamWork');
 });
