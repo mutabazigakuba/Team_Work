@@ -1,14 +1,14 @@
 import moment from 'moment';
-
+import sortJsonArray from 'sort-json-array'
 class ArticleModel {
 
-    constructor (){
+    constructor() {
         this.articles = [];
         this.comments = [];
     }
 
-    addNewArticle(data){
-        const id  = this.articles.length + 1;
+    addNewArticle(data) {
+        const id = this.articles.length + 1;
         const newArticle = {
             id: id,
             createdOn: this.dateFunction(),
@@ -23,20 +23,20 @@ class ArticleModel {
         return this.articles.find(article => article.id === id);
     }
 
-    dateFunction(){
+    dateFunction() {
         var currentDate = new Date();
         var date = currentDate.getDate();
-        var month = currentDate.getMonth(); 
+        var month = currentDate.getMonth();
         var year = currentDate.getFullYear();
         var hours = currentDate.getHours();
-        const minutes = currentDate.getMinutes(); 
+        const minutes = currentDate.getMinutes();
         const seconds = currentDate.getSeconds();
-        var dateString = date + "-" +(month + 1) + "-" + year + ' '+ hours+ ':'+minutes+':'+seconds;
+        var dateString = date + "-" + (month + 1) + "-" + year + ' ' + hours + ':' + minutes + ':' + seconds;
 
         return dateString;
     }
 
-    editArticle (id, data){
+    editArticle(id, data) {
         const article = this.findOne(id);
         if (!article) {
             return {
@@ -73,7 +73,7 @@ class ArticleModel {
         };
     }
 
-    commentOnArticle(id, data){
+    commentOnArticle(id, data) {
         const article = this.findOne(id);
         if (!article) {
             return {
@@ -81,7 +81,7 @@ class ArticleModel {
                 message: " Article Not Available"
             }
         }
-        const commentId  = this.comments.length + 1;
+        const commentId = this.comments.length + 1;
         const newComment = {
             id: commentId,
             username: data.body.username,
@@ -101,6 +101,15 @@ class ArticleModel {
                 email: data.body.email,
             }
         };
+    }
+
+    findAll() {
+        var user = [
+            { name: 'c', location: "San Jose" },
+            { name: 'a', location: "San Francisco"},
+            { name: 'b', location: "New York" },
+          ];
+        return sortJsonArray(this.articles, 'id', 'des');
     }
 }
 
