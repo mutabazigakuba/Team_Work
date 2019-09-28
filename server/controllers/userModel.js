@@ -35,6 +35,40 @@ const UserController = {
                 "error": "server error"
             })
         }
+    },
+
+    async login (req, res){
+        const schema = {
+            email: Joi.string().email().required(),
+            password: Joi.string().min(6).required(),
+        }
+        const result = Joi.validate(req.body, schema);
+        if (result.error) {
+            return res.status(400).send({
+                "status": 400,
+                "error": result.error.details[0].message
+            });
+        }
+        try {
+            const login_user = UserModel.login(req, req);
+            if (login_user.status == false) {
+                return res.status(401).send({
+                    "status": 401,
+                    "error": login_user.message,
+                })
+            }
+            return res.status(200).send({
+                "status": 200,
+                "message": "user is successfully logged in",
+                "data": login_user.data
+            })
+        }catch(e){
+            console.log(e)
+            return res.status(500).send({
+                "status": 500,
+                "error": "server error"
+            })
+        }
     }
 }
 

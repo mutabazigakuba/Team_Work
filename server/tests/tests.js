@@ -9,7 +9,7 @@ chai.should()
 
 describe ('TeamWork', () =>{
 
-    describe('POST REQUEST', () =>{
+    describe('CREATE USER', () =>{
         it('Return to be JSON', (done) =>{
             chai.request(app)
                 .post('/api/v1/auth/signup')
@@ -25,6 +25,27 @@ describe ('TeamWork', () =>{
         it('Return status 400', (done) =>{
             chai.request(app)
                 .post('/api/v1/auth/signup')
+                .end ((req, res) => {res.should.have.status(400);})
+                done()
+        })
+    })
+
+    describe('LOGIN USER', () =>{
+        it('Return to be JSON', (done) =>{
+            chai.request(app)
+                .post('/api/v1/auth/signin')
+                .end ((req, res) => {expect(res).to.be.json;})
+                done()
+        })
+        it('Return to be Object', (done) =>{
+            chai.request(app)
+                .post('/api/v1/auth/signin')
+                .end ((req, res) => {res.body.should.be.a('object');})
+                done()
+        })
+        it('Return status 400', (done) =>{
+            chai.request(app)
+                .post('/api/v1/auth/signin')
                 .end ((req, res) => {res.should.have.status(400);})
                 done()
         })
