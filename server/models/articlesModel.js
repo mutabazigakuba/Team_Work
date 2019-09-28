@@ -4,11 +4,11 @@ class ArticleModel {
 
     constructor (){
         this.articles = [];
+        this.comments = [];
     }
 
     addNewArticle(data){
         const id  = this.articles.length + 1;
-
         const newArticle = {
             id: id,
             createdOn: this.dateFunction(),
@@ -53,7 +53,54 @@ class ArticleModel {
                 article: data.body.article
             }
         }
+    }
 
+    deleteArticle(id) {
+        const article = this.findOne(id);
+        if (!article) {
+            return {
+                status: false,
+                message: "Article Not  Found"
+            }
+        }
+        const index = this.articles.indexOf(article);
+        this.articles.splice(index, 1);
+        return {
+            status: true,
+            data: {
+                message: "article successfully edited",
+            }
+        };
+    }
+
+    commentOnArticle(id, data){
+        const article = this.findOne(id);
+        if (!article) {
+            return {
+                status: false,
+                message: " Article Not Available"
+            }
+        }
+        const commentId  = this.comments.length + 1;
+        const newComment = {
+            id: commentId,
+            username: data.body.username,
+            email: data.body.email,
+            comment: data.body.article
+        };
+        this.articles.push(newComment);
+        return {
+            status: true,
+            message: "comment added successfully",
+            data: {
+                createdOn: this.dateFunction(),
+                articleTitle: article.title,
+                article: article.article,
+                comment: data.body.comment,
+                username: data.body.username,
+                email: data.body.email,
+            }
+        };
     }
 }
 
