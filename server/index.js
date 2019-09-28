@@ -16,7 +16,7 @@ app.use('*', (req, res) => {
   });
 });
 
-app.listen(3000)
+app.listen(8080)
 console.log('app running on port ', 3000);
 
 export default app;
