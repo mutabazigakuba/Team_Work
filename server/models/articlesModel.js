@@ -53,7 +53,24 @@ class ArticleModel {
                 article: data.body.article
             }
         }
+    }
 
+    deleteArticle(id) {
+        const article = this.findOne(id);
+        if (!article) {
+            return {
+                status: false,
+                message: "Article Not  Found"
+            }
+        }
+        const index = this.articles.indexOf(article);
+        this.articles.splice(index, 1);
+        return {
+            status: true,
+            data: {
+                message: "article successfully edited",
+            }
+        };
     }
 }
 

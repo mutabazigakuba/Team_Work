@@ -53,8 +53,30 @@ const ArticleController = {
             }
             return res.status(200).send({
                 "status": 200,
-                "message": "article successfully edited", 
+                "message": "article successfully edited",
                 "data": update.data
+            })
+        } catch (e) {
+            console.log(e)
+            return res.status(500).send({
+                "status": 500,
+                "error": "server error"
+            })
+        }
+    },
+
+    async deletedArticle(req, res) {
+        try {
+            const deleted = ArticleModel.deleteArticle(parseInt(req.params.articleid))
+            if (deleted.status === false) {
+                return res.status(400).send({
+                    "status": 400,
+                    "error": deleted.message,
+                })
+            }
+            return res.status(204).send({
+                "status": 204,
+                "message": deleted.message
             })
         } catch (e) {
             console.log(e)
