@@ -85,7 +85,41 @@ const ArticleController = {
                 "error": "server error"
             })
         }
-    }
+    },
+
+    async createComment(req, res) {
+        const schema = {
+            comment: Joi.string().required(),
+            username: Joi.string().required(),
+            email: Joi.string().email().required()
+        }
+        const result = Joi.validate(req.body, schema);
+        if (result.error) {
+            return res.status(400).send({
+                "status": 400,
+                "error": result.error.details[0].message
+            });
+        }
+        try {
+            const comment = ArticleModel.commentOnArticle(parseInt(req.params.articleid), req);
+            if (comment.status === false) {
+                return res.status(400).send({
+                    "status": 400,
+                    "error": comment.message,
+                })
+            }
+            return res.status(201).send({
+                "status": 201,
+                "message": "comment successfully created",
+                "data": comment.data
+            })
+        } catch (e) {
+            return res.status(500).send({
+                "status": 500,
+                "error": "server error"
+            })
+        }
+    },
 }
 
 export default ArticleController;
