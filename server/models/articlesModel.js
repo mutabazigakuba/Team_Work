@@ -8,6 +8,22 @@ class ArticleModel {
 
     addNewArticle(data){
         const id  = this.articles.length + 1;
+
+        const newArticle = {
+            id: id,
+            createdOn: this.dateFunction(),
+            title: data.body.title,
+            article: data.body.article
+        };
+        this.articles.push(newArticle);
+        return newArticle;
+    }
+
+    findOne(id) {
+        return this.articles.find(article => article.id === id);
+    }
+
+    dateFunction(){
         var currentDate = new Date();
         var date = currentDate.getDate();
         var month = currentDate.getMonth(); 
@@ -17,14 +33,27 @@ class ArticleModel {
         const seconds = currentDate.getSeconds();
         var dateString = date + "-" +(month + 1) + "-" + year + ' '+ hours+ ':'+minutes+':'+seconds;
 
-        const newArticle = {
-            id: id,
-            createdOn: dateString,
-            title: data.body.title,
-            article: data.body.article
-        };
-        this.articles.push(newArticle);
-        return newArticle;
+        return dateString;
+    }
+
+    editArticle (id, data){
+        const article = this.findOne(id);
+        if (!article) {
+            return {
+                status: false,
+                message: " Article Not Available"
+            }
+        }
+        return {
+            status: true,
+            data: {
+                id: article.id,
+                created_on: this.dateFunction(),
+                title: data.body.title,
+                article: data.body.article
+            }
+        }
+
     }
 }
 

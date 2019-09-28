@@ -3,7 +3,7 @@ import Joi from '@hapi/joi';
 import '@babel/polyfill';
 
 const ArticleController = {
-    async createArticle (req,res) {
+    async createArticle(req, res) {
         const schema = {
             title: Joi.string().required(),
             article: Joi.string().required(),
@@ -21,6 +21,40 @@ const ArticleController = {
                 "status": 200,
                 "message": "article successfully created",
                 "data": article
+            })
+        } catch (e) {
+            console.log(e)
+            return res.status(500).send({
+                "status": 500,
+                "error": "server error"
+            })
+        }
+    },
+
+    async updateArticle(req, res) {
+        const schema = {
+            title: Joi.string().required(),
+            article: Joi.string().required(),
+        }
+        const result = Joi.validate(req.body, schema);
+        if (result.error) {
+            return res.status(400).send({
+                "status": 400,
+                "error": result.error.details[0].message
+            });
+        }
+        try {
+            const update = ArticleModel.editArticle(parseInt(req.params.articleid), req)
+            if (update.status === false) {
+                return res.status(400).send({
+                    "status": 400,
+                    "error": update.message,
+                })
+            }
+            return res.status(200).send({
+                "status": 200,
+                "message": "article successfully edited", 
+                "data": update.data
             })
         } catch (e) {
             console.log(e)
