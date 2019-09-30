@@ -7,6 +7,7 @@ const ArticleController = {
         const schema = {
             title: Joi.string().required(),
             article: Joi.string().required(),
+            username: Joi.string().required()
         }
         const result = Joi.validate(req.body, schema);
         if (result.error) {
@@ -128,6 +129,27 @@ const ArticleController = {
             "message": "success",
             "data": articles
         });
+    },
+
+    displayOne(req, res) {
+        try {
+            const single_article = ArticleModel.findOneArticle(parseInt(req.params.articleid));
+            if (single_article.status === false) {
+                return res.status(401).send({
+                    "status": 401,
+                    "error": single_article.message,
+                })
+            }
+            return res.status(200).send({
+                "status": 200,
+                "data": single_article.data
+            })
+        } catch (e) {
+            return res.status(500).send({
+                "status": 500,
+                "error": "server error"
+            })
+        }
     },
 }
 
