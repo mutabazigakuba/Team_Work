@@ -20,18 +20,18 @@
   },
   "homepage": "https://github.com/mutabazigakuba/Team_Work#readme",
   "dependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
     "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/register": "^7.6.2",
     "@hapi/joi": "^15.0.3",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
-    "sort-json-array": "^0.1.7",
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
-    "@babel/node": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/register": "^7.6.2"
+    "sort-json-array": "^0.1.7"
   },
   "devDependencies": {
     "nodemon": "^1.19.2",
