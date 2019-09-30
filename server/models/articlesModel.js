@@ -4,6 +4,7 @@ class ArticleModel {
 
     constructor() {
         this.articles = [];
+        this.comments = [];
     }
 
     addNewArticle(data) {
@@ -74,7 +75,6 @@ class ArticleModel {
     }
 
     commentOnArticle(id, data) {
-        this.comments = [];
         const article = this.findOne(id);
         if (!article) {
             return {
@@ -111,8 +111,8 @@ class ArticleModel {
                 message: " Article Not Available"
             }
         }
-        const index = this.articles.indexOf(singleArticle);
-        const comments = this.comments.find(article => article.id === id);
+        // const index = this.articles.indexOf(singleArticle);
+        const comments = this.comments.find(comment => comment.id === id);
         return {
             status: true,
             data: {
