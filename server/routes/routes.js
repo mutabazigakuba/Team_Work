@@ -12,5 +12,6 @@ routes.patch('/api/v1/articles/:articleid', Article.updateArticle);
 routes.delete('/api/v1/articles/:articleid', Article.deletedArticle);
 routes.post('/api/v1/articles/:articleid/comments', Article.createComment);
 routes.get('/api/v1/feeds', Article.viewAll);
+routes.get('/api/v1/articles/:articleid', Article.displayOne);
 
 export default routes;

@@ -137,4 +137,19 @@ describe ('TeamWork', () =>{
                 done()
         })
     })
+
+    describe('VIEW SINGLE ARTICLE', () =>{
+        it('Return to be JSON', (done) =>{
+            chai.request(app)
+                .get('/api/v1/articles/:articleid')
+                .end ((req, res) => {expect(res).to.be.json;})
+                done()
+        })
+        it('Return to be Object', (done) =>{
+            chai.request(app)
+                .get('/api/v1/articles/:articleid')
+                .end ((req, res) => {res.body.should.be.a('object');})
+                done()
+        })
+    })
 })

@@ -4,7 +4,6 @@ class ArticleModel {
 
     constructor() {
         this.articles = [];
-        this.comments = [];
     }
 
     addNewArticle(data) {
@@ -13,7 +12,8 @@ class ArticleModel {
             id: id,
             createdOn: this.dateFunction(),
             title: data.body.title,
-            article: data.body.article
+            article: data.body.article,
+            username: data.body.username
         };
         this.articles.push(newArticle);
         return newArticle;
@@ -68,12 +68,13 @@ class ArticleModel {
         return {
             status: true,
             data: {
-                message: "article successfully edited",
+                message: "article successfully deleted",
             }
         };
     }
 
     commentOnArticle(id, data) {
+        this.comments = [];
         const article = this.findOne(id);
         if (!article) {
             return {
@@ -84,32 +85,45 @@ class ArticleModel {
         const commentId = this.comments.length + 1;
         const newComment = {
             id: commentId,
+            createdOn: this.dateFunction(),
+            articleTitle: article.title,
+            article: article.article,
+            comment: data.body.comment,
             username: data.body.username,
             email: data.body.email,
-            comment: data.body.article
         };
-        this.articles.push(newComment);
+        this.comments.push(newComment);
         return {
             status: true,
-            message: "comment added successfully",
-            data: {
-                createdOn: this.dateFunction(),
-                articleTitle: article.title,
-                article: article.article,
-                comment: data.body.comment,
-                username: data.body.username,
-                email: data.body.email,
-            }
+            data: newComment
         };
     }
 
     findAll() {
-        var user = [
-            { name: 'c', location: "San Jose" },
-            { name: 'a', location: "San Francisco"},
-            { name: 'b', location: "New York" },
-          ];
         return sortJsonArray(this.articles, 'id', 'des');
+    }
+
+    findOneArticle(id) {
+        const singleArticle = this.findOne(id)
+        if (!singleArticle) {
+            return {
+                status: false,
+                message: " Article Not Available"
+            }
+        }
+        const index = this.articles.indexOf(singleArticle);
+        const comments = this.comments.find(article => article.id === id);
+        return {
+            status: true,
+            data: {
+                id: singleArticle.id,
+                createdOn: singleArticle.createdOn,
+                title: singleArticle.title,
+                article: singleArticle.article,
+                authorId: singleArticle.username,
+                comments: comments
+            }
+        }
     }
 }
 
