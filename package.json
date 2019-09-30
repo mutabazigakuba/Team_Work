@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --require @babel/register server/**/**/tests.js --exit",
     "build": "babel server -d build",
-    "start": "npm run babel-node server/index.js",
+    "start": "babel-node server/index.js",
     "dev": "nodemon --exec babel-node server/index.js"
   },
   "repository": {
