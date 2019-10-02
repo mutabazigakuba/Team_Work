@@ -59,6 +59,7 @@ const ArticleValidator = {
                 "error": result.error.details[0].message
             });
         }
+        next()
     }
 }
 

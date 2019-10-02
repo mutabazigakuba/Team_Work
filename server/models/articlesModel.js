@@ -124,7 +124,7 @@ class ArticleModel {
                     title: singleArticle.title,
                     article: singleArticle.article,
                     authorId: singleArticle.username,
-                    comments: 'No comments'
+                    comments: this.comments
                 }
             }
         }
