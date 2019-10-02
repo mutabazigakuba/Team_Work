@@ -5,6 +5,7 @@ class ArticleModel {
     constructor() {
         this.articles = [];
         this.comments = [];
+        this.new_comments = [];
     }
 
     addNewArticle(data) {
@@ -86,6 +87,7 @@ class ArticleModel {
         const newComment = {
             id: commentId,
             createdOn: this.dateFunction(),
+            article_id: article.id,
             articleTitle: article.title,
             article: article.article,
             comment: data.body.comment,
@@ -104,7 +106,7 @@ class ArticleModel {
     }
 
     findOneArticle(id) {
-        const singleArticle = this.findOne(id)
+        const singleArticle = this.findOne(id);
         if (!singleArticle) {
             return {
                 status: false,
@@ -113,6 +115,25 @@ class ArticleModel {
         }
         // const index = this.articles.indexOf(singleArticle);
         const comments = this.comments.find(comment => comment.id === id);
+        if (!comments) {
+            return {
+                status: true,
+                data: {
+                    id: singleArticle.id,
+                    createdOn: singleArticle.createdOn,
+                    title: singleArticle.title,
+                    article: singleArticle.article,
+                    authorId: singleArticle.username,
+                    comments: 'No comments'
+                }
+            }
+        }
+        
+        for (let i = 0; i < this.comments.length; i ++){
+            if (this.comments[i].article_id === id){
+                this.new_comments.push(this.comments[i]);
+            }
+        }
         return {
             status: true,
             data: {
@@ -121,7 +142,7 @@ class ArticleModel {
                 title: singleArticle.title,
                 article: singleArticle.article,
                 authorId: singleArticle.username,
-                comments: comments
+                comments: this.new_comments
             }
         }
     }
