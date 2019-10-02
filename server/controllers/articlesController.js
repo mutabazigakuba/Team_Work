@@ -132,6 +132,16 @@ const ArticleController = {
     },
 
     displayOne(req, res) {
+        const schema = {
+            articleid: Joi.number()
+        }
+        const result = Joi.validate(req.params, schema);
+        if (result.error) {
+            return res.status(400).send({
+                "status": 400,
+                "error": result.error.details[0].message
+            });
+        }
         try {
             const single_article = ArticleModel.findOneArticle(parseInt(req.params.articleid));
             if (single_article.status === false) {
