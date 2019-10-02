@@ -108,7 +108,6 @@ const ArticleController = {
                 "data": single_article.data
             })
         } catch (e) {
-            console.log(e)
             return res.status(500).send({
                 "status": 500,
                 "error": "server error"
