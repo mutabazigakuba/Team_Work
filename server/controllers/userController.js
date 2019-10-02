@@ -4,7 +4,6 @@ import '@babel/polyfill'
 
 const UserController = {
     async createNewuser(req, res) {
-        
         try {
             const user = UserModel.addNewUser(req);
             return res.status(201).send({
@@ -13,7 +12,6 @@ const UserController = {
                 "data": user
             })
         } catch (e) {
-            console.log(e)
             return res.status(500).send({
                 "status": 500,
                 "error": "server error"
@@ -22,17 +20,6 @@ const UserController = {
     },
 
     async login (req, res){
-        const schema = {
-            email: Joi.string().email().required(),
-            password: Joi.string().min(6).required(),
-        }
-        const result = Joi.validate(req.body, schema);
-        if (result.error) {
-            return res.status(400).send({
-                "status": 400,
-                "error": result.error.details[0].message
-            });
-        }
         try {
             const login_user = UserModel.login(req, req);
             if (login_user.status == false) {
