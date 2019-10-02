@@ -4,18 +4,6 @@ import '@babel/polyfill';
 
 const ArticleController = {
     async createArticle(req, res) {
-        const schema = {
-            title: Joi.string().required(),
-            article: Joi.string().min(250).required(),
-            username: Joi.string().required()
-        }
-        const result = Joi.validate(req.body, schema);
-        if (result.error) {
-            return res.status(400).send({
-                "status": 400,
-                "error": result.error.details[0].message
-            });
-        }
         try {
             const article = ArticleModel.addNewArticle(req);
             return res.status(200).send({
@@ -33,17 +21,6 @@ const ArticleController = {
     },
 
     async updateArticle(req, res) {
-        const schema = {
-            title: Joi.string().required(),
-            article: Joi.string().required(),
-        }
-        const result = Joi.validate(req.body, schema);
-        if (result.error) {
-            return res.status(400).send({
-                "status": 400,
-                "error": result.error.details[0].message
-            });
-        }
         try {
             const update = ArticleModel.editArticle(parseInt(req.params.articleid), req)
             if (update.status === false) {
@@ -89,18 +66,6 @@ const ArticleController = {
     },
 
     async createComment(req, res) {
-        const schema = {
-            comment: Joi.string().required(),
-            username: Joi.string().required(),
-            email: Joi.string().email().required()
-        }
-        const result = Joi.validate(req.body, schema);
-        if (result.error) {
-            return res.status(400).send({
-                "status": 400,
-                "error": result.error.details[0].message
-            });
-        }
         try {
             const comment = ArticleModel.commentOnArticle(parseInt(req.params.articleid), req);
             if (comment.status === false) {
@@ -132,16 +97,6 @@ const ArticleController = {
     },
 
     displayOne(req, res) {
-        const schema = {
-            articleid: Joi.number()
-        }
-        const result = Joi.validate(req.params, schema);
-        if (result.error) {
-            return res.status(400).send({
-                "status": 400,
-                "error": result.error.details[0].message
-            });
-        }
         try {
             const single_article = ArticleModel.findOneArticle(parseInt(req.params.articleid));
             if (single_article.status === false) {
