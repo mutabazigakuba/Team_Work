@@ -7,7 +7,8 @@
     "test": "mocha --require @babel/register server/**/**/tests.js --exit",
     "build": "babel server -d build",
     "start": "babel-node server/index.js",
-    "dev": "nodemon --exec babel-node server/index.js"
+    "dev": "nodemon --exec babel-node server/index.js",
+    "coverage": "node node_modules/.bin/istanbul cover _mocha -- -R spec"
   },
   "repository": {
     "type": "git",
@@ -34,9 +35,12 @@
     "sort-json-array": "^0.1.7"
   },
   "devDependencies": {
-    "nodemon": "^1.19.2",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "mocha": "^6.2.0"
+    "coveralls": "^3.0.6",
+    "istanbul": "^0.4.5",
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.2",
+    "nyc": "^14.1.1"
   }
 }
