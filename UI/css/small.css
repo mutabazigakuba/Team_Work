@@ -1,0 +1,51 @@
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    * {
+      font-size: 10px;
+    }
+    #belowTopSection {
+      width: 100%;
+    }
+    #carousel {
+      text-align: center;
+      width: 100%;
+    }
+    #navbar {
+      padding: 5px 5px 5px 5px;;
+      width: 100%;  
+    }
+    #navbar a,
+    a:visited {
+    padding: 5px 25px 5px 10px;
+    }
+    #mainBody {
+      display: flex;
+      min-height: 500px;
+      padding: 10px 0px 1% 1%;
+    } 
+    #mainBodyLeft{
+      width: 50%;
+      padding: 0px 5% 0px 0px;
+    }
+    #mainBodyRight {
+      width: 50%;
+      padding: 0px 5% 0px 0px;
+    }
+    #mainBodyLeft h3 {
+      font-size: 12px;
+    }
+    #mainBodyRight h4{
+      font-size: 15px;
+    }
+    #views{
+      padding: 1% 0px 1% 1%;
+    }
+    #categories{
+      padding: 1% 0px 1% 1%;
+    }
+    #title h1 {
+      font-size: 15px;
+    }
+    #title {
+      padding: 3% 0px 0% 10%;
+    }
+}
