@@ -317,6 +317,10 @@ button {
  * {
    font-size: 12px;
  }
+ #views p {
+  background: #ffffff;
+  font-size: 15px;
+}
 }
 @media (min-width: 481px) and (max-width: 767px) {
   #navbar {
@@ -333,10 +337,37 @@ button {
     width: 100%;
     padding: 0px 10% 0px 0px;
   }
+  #mainBodyLeft h1 {
+    font-size: 15px;
+  }
+  #postOne,
+  #postTwo,
+  #postThree,
+  #postFour {
+    margin: 10px;
+    min-height: 50px;
+  }
 }
 @media (min-width: 320px) and (max-width: 480px) {
   * {
     font-size: 10px;
+  }
+  #mainBodyLeft h1 {
+    font-size: 15px;
+  }
+  #about h3, #bottomBody h3 {
+    font-size: 15px;
+  }
+  #bottomBody 
+  #about h4 {
+    font-size: 13px
+  }
+  #mainBodyLeft h5{
+    font-size: 13px;
+  }
+  #views p {
+    background: #ffffff;
+    font-size: 15px;
   }
   #belowTopSection {
     width: 100%;
@@ -388,14 +419,33 @@ button {
   #title {
     padding: 3% 0px 0% 10%;
   }
+  #postOne,
+  #postTwo,
+  #postThree,
+  #postFour {
+    margin: 10px;
+    min-height: 50px;
+  }
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
   * {
     font-size: 10px;
   }
+  #about h4 {
+    font-size: 13px
+  }
+  #mainBodyLeft h1 {
+    font-size: 15px;
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+  }
   #belowTopSection {
     width: 100%;
+  }
+  #views p {
+    background: #ffffff;
+    font-size: 15px;
   }
   #carousel {
     text-align: center;
@@ -454,5 +504,12 @@ button {
   button {
     width: 30%;
   }
+  #postOne,
+  #postTwo,
+  #postThree,
+  #postFour {
+    margin: 10px;
+    min-height: 50px;
+}
 }
 
