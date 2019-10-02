@@ -12,7 +12,6 @@ const ArticleController = {
                 "data": article
             })
         } catch (e) {
-            console.log(e)
             return res.status(500).send({
                 "status": 500,
                 "error": "server error"
@@ -35,7 +34,6 @@ const ArticleController = {
                 "data": update.data
             })
         } catch (e) {
-            console.log(e)
             return res.status(500).send({
                 "status": 500,
                 "error": "server error"
@@ -110,7 +108,6 @@ const ArticleController = {
                 "data": single_article.data
             })
         } catch (e) {
-            console.log(e)
             return res.status(500).send({
                 "status": 500,
                 "error": "server error"
