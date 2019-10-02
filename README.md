@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/mutabazigakuba/Team_Work/badge.svg?branch=develop)](https://coveralls.io/github/mutabazigakuba/Team_Work?branch=develop)
+
 # Team_Work
 
 ### overview
