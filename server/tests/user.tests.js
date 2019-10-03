@@ -7,7 +7,17 @@ chai.use(chai_http);
 const expect = chai.expect;
 chai.should()
 
+
 describe('CREATE USER', () =>{
+    it('User should be able to signup with an invalid email address', (done) =>{
+        chai.request(app)
+            .post('/api/v1/auth/signup')
+            .send({ email: 'gakubar2gmail.com' })
+            .end ((req, res) => {
+                res.should.have.status(400)
+            })
+            done()
+    });
     it('Return to be JSON', (done) =>{
         chai.request(app)
             .post('/api/v1/auth/signup')
@@ -29,6 +39,15 @@ describe('CREATE USER', () =>{
 })
 
 describe('LOGIN USER', () =>{
+    it('User should not login with an invalid email address', (done) =>{
+        chai.request(app)
+            .post('/api/v1/auth/signup')
+            .send({ email: 'gakubar2gmail.com' })
+            .end ((req, res) => {
+                res.should.have.status(400)
+            })
+            done()
+    });
     it('Return to be JSON', (done) =>{
         chai.request(app)
             .post('/api/v1/auth/signin')

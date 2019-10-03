@@ -7,8 +7,21 @@ chai.use(chai_http);
 const expect = chai.expect;
 chai.should()
 
-
+const dummies = {
+    title: 'best article ever',
+    article: 'My Article is short but has some littel sense in it'
+}
 describe('CREATE ARTICLE', () => {
+    it('Have three inputs', (done) => {
+        chai.request(app)
+            .post('/api/v1/articles')
+            .set('auth', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoxLCJpYXQiOjE1NzAxMTQyNTAsImV4cCI6MTU3MDcxOTA1MH0.gpW0AcSsbTTh6aLpwzPUohiTTj0OfDDYH-oayXNE9UY' )
+            .send(dummies)
+            .end((err, res) => { 
+                res.should.have.status(500)
+             })
+        done()
+    })
     it('Return to be JSON', (done) => {
         chai.request(app)
             .post('/api/v1/articles')
