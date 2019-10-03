@@ -21,12 +21,6 @@ describe('CREATE ARTICLE', () => {
             .end((req, res) => { res.body.should.be.a('object'); })
         done()
     })
-    it('Return status 400', (done) => {
-        chai.request(app)
-            .post('/api/v1/articles')
-            .end((req, res) => { res.should.have.status(400); })
-        done()
-    })
 })
 
 describe('EDIT ARTICLE', () => {
@@ -40,12 +34,6 @@ describe('EDIT ARTICLE', () => {
         chai.request(app)
             .patch('/api/v1/articles/:articleid')
             .end((req, res) => { res.body.should.be.a('object'); })
-        done()
-    })
-    it('Return status 400', (done) => {
-        chai.request(app)
-            .patch('/api/v1/articles/:articleid')
-            .end((req, res) => { res.should.have.status(400); })
         done()
     })
 })
