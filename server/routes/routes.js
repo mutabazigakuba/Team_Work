@@ -4,6 +4,7 @@ import Article from '../controllers/articlesController';
 import userValidator from '../middleware/userValidator.js';
 import loginValidator from '../middleware/loginValidator.js';
 import ArticleValidator from '../middleware/articlesValidator.js';
+import auth from '../middleware/auth.js';
 
 
 const routes = express.Router();
