@@ -4,7 +4,7 @@
   "description": "andela project",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require @babel/register server/**/**/**tests.js --exit",
+    "test": "nyc --require @babel/register mocha server/**/**/**tests.js --exit",
     "build": "babel server -d build",
     "start": "env-cmd -f ./.env babel-node server/index.js",
     "dev": "env-cmd -f ./.env nodemon --exec babel-node server/index.js",
