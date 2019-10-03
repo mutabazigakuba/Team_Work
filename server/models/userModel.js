@@ -26,6 +26,10 @@ class UserModel {
         return newUser;
     }
 
+    findOne(id) {
+        return this.users.find(user => user.id === id);
+    }
+
     login( email, password){
         const findUser = this.users.find( user => user.email === email.body.email);
         if(!findUser){

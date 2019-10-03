@@ -12,11 +12,11 @@ const routes = express.Router();
 routes.get('/', function (req, res) {return res.send('Hello TeamWork');});
 routes.post('/api/v1/auth/signup', userValidator , User.createNewuser);
 routes.post('/api/v1/auth/signin', loginValidator, User.login);
-routes.post('/api/v1/articles', ArticleValidator.createArticles, Article.createArticle);
-routes.patch('/api/v1/articles/:articleid', ArticleValidator.updateArticle, Article.updateArticle);
-routes.delete('/api/v1/articles/:articleid', Article.deletedArticle);
-routes.post('/api/v1/articles/:articleid/comments', ArticleValidator.createComment, Article.createComment);
-routes.get('/api/v1/feeds', Article.viewAll);
-routes.get('/api/v1/articles/:articleid', ArticleValidator.displayOne, Article.displayOne);
+routes.post('/api/v1/articles', auth, ArticleValidator.createArticles, Article.createArticle);
+routes.patch('/api/v1/articles/:articleid', auth, ArticleValidator.updateArticle, Article.updateArticle);
+routes.delete('/api/v1/articles/:articleid',auth, Article.deletedArticle);
+routes.post('/api/v1/articles/:articleid/comments', auth, ArticleValidator.createComment, Article.createComment);
+routes.get('/api/v1/feeds',auth, Article.viewAll);
+routes.get('/api/v1/articles/:articleid',auth, ArticleValidator.displayOne, Article.displayOne);
 
 export default routes;
