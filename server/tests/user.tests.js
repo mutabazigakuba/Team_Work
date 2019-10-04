@@ -8,8 +8,18 @@ const expect = chai.expect;
 chai.should()
 
 
+describe('WELCOME', () =>{
+    it('User should see hello team work ', (done) =>{
+        chai.request(app)
+            .get('/')
+            .end ((req, res) => {
+                res.should.have.status(200)
+            })
+            done()
+    });
+})
 describe('CREATE USER', () =>{
-    it('User should be able to signup with an invalid email address', (done) =>{
+    it('User should not be able to signup with an invalid email address', (done) =>{
         chai.request(app)
             .post('/api/v1/auth/signup')
             .send({ email: 'gakubar2gmail.com' })
