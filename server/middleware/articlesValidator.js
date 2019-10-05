@@ -20,7 +20,7 @@ const ArticleValidator = {
     updateArticle(req,res, next){
         const schema = {
             title: Joi.string().required(),
-            article: Joi.string().required(),
+            article: Joi.string().min(250).required(),
         }
         const result = Joi.validate(req.body, schema);
         if (result.error) {
