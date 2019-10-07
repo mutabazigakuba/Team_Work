@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/mutabazigakuba/Team_Work/badge.svg?branch=develop)](https://coveralls.io/github/mutabazigakuba/Team_Work?branch=develop) [![Build Status](https://travis-ci.org/mutabazigakuba/Team_Work.svg?branch=develop)](https://travis-ci.org/mutabazigakuba/Team_Work) [![Maintainability](https://api.codeclimate.com/v1/badges/8ab05d990f5a7c3f8410/maintainability)](https://codeclimate.com/github/mutabazigakuba/Team_Work/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/8ab05d990f5a7c3f8410/test_coverage)](https://codeclimate.com/github/mutabazigakuba/Team_Work/test_coverage)
+[![Coverage Status](https://coveralls.io/repos/github/mutabazigakuba/Team_Work/badge.svg?branch=develop)](https://coveralls.io/github/mutabazigakuba/Team_Work?branch=develop) [![Build Status](https://travis-ci.org/mutabazigakuba/Team_Work.svg?branch=develop)](https://travis-ci.org/mutabazigakuba/Team_Work) [![Maintainability](https://api.codeclimate.com/v1/badges/8ab05d990f5a7c3f8410/maintainability)](https://codeclimate.com/github/mutabazigakuba/Team_Work/maintainability)
 
 # Team_Work
 
