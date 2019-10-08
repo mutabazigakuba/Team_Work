@@ -5,7 +5,6 @@ const ArticleValidator = {
         const schema = {
             title: Joi.string().required(),
             article: Joi.string().min(150).required(),
-            username: Joi.string().required()
         }
         const result = Joi.validate(req.body, schema);
         if (result.error) {

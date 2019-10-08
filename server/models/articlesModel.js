@@ -1,5 +1,7 @@
 import moment from 'moment';
-import sortJsonArray from 'sort-json-array'
+import sortJsonArray from 'sort-json-array';
+import userModel from '../models/userModel';
+
 class ArticleModel {
 
     constructor() {
@@ -8,14 +10,17 @@ class ArticleModel {
         this.new_comments = [];
     }
 
-    addNewArticle(data) {
+    addNewArticle(newid, data) {
         const id = this.articles.length + 1;
+        const userinfo = userModel.findOne(newid)
+        const userName = userinfo.first_name
+
         const newArticle = {
             id: id,
             createdOn: this.dateFunction(),
             title: data.body.title,
             article: data.body.article,
-            username: data.body.username
+            username: userName
         };
         this.articles.push(newArticle);
         return newArticle;
@@ -46,14 +51,14 @@ class ArticleModel {
                 message: " Article Not Available"
             }
         }
+        const index = this.articles.indexOf(article);
+        this.articles[index].title = data.body.title;
+        this.articles[index].article = data.body.article;
+        this.articles[index].createdOn = this.dateFunction()
+
         return {
             status: true,
-            data: {
-                id: article.id,
-                created_on: this.dateFunction(),
-                title: data.body.title,
-                article: data.body.article
-            }
+            data: this.articles[index]
         }
     }
 
