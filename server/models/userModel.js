@@ -57,7 +57,7 @@ class UserModel {
             }
         }
 
-        const token = Helper.generateToken(findUser.token)
+        const token = Helper.generateToken(findUser.id)
         return{
             status:true,
             data: {
