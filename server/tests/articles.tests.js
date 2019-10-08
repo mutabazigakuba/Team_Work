@@ -12,16 +12,6 @@ const dummies = {
     article: 'My Article is short but has some littel sense in it'
 }
 describe('CREATE ARTICLE', () => {
-    it('Have three inputs', (done) => {
-        chai.request(app)
-            .post('/api/v1/articles')
-            .set('auth', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoxLCJpYXQiOjE1NzAxMTQyNTAsImV4cCI6MTU3MDcxOTA1MH0.gpW0AcSsbTTh6aLpwzPUohiTTj0OfDDYH-oayXNE9UY' )
-            .send(dummies)
-            .end((err, res) => { 
-                res.should.have.status(500)
-             })
-        done()
-    })
     it('Return to be JSON', (done) => {
         chai.request(app)
             .post('/api/v1/articles')
@@ -37,16 +27,6 @@ describe('CREATE ARTICLE', () => {
 })
 
 describe('EDIT ARTICLE', () => {
-    it('Have two inputs', (done) => {
-        chai.request(app)
-            .post('/api/v1/articles')
-            .set('auth', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoxLCJpYXQiOjE1NzAxMTQyNTAsImV4cCI6MTU3MDcxOTA1MH0.gpW0AcSsbTTh6aLpwzPUohiTTj0OfDDYH-oayXNE9UY' )
-            .send(dummies)
-            .end((err, res) => { 
-                res.should.have.status(500)
-             })
-        done()
-    })
     it('Return to be JSON', (done) => {
         chai.request(app)
             .patch('/api/v1/articles/:articleid')
@@ -77,20 +57,6 @@ describe('DELETE ARTICLE', () => {
 })
 
 describe('COMMENT ON ARTICLE', () => {
-    it('Have three inputs', (done) => {
-        chai.request(app)
-            .post('/api/v1/articles')
-            .set('auth', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoxLCJpYXQiOjE1NzAxMTQyNTAsImV4cCI6MTU3MDcxOTA1MH0.gpW0AcSsbTTh6aLpwzPUohiTTj0OfDDYH-oayXNE9UY' )
-            .send({
-                comment: 'hello comment',
-                username: 'ronald',
-                email: 'gakubar2@gmail.com'
-            })
-            .end((err, res) => { 
-                res.should.have.status(500)
-             })
-        done()
-    })
     it('Return to be JSON', (done) => {
         chai.request(app)
             .post('/api/v1/articles/:articleid/comments')
@@ -102,12 +68,6 @@ describe('COMMENT ON ARTICLE', () => {
             .post('/api/v1/articles/:articleid/comments')
             .end((req, res) => { res.body.should.be.a('object'); })
         done()
-    })
-    it('Return status 500', (done) =>{
-        chai.request(app)
-            .get('/api/v1/feeds')
-            .end ((err, res) => {res.should.have.status(500);})
-            done()
     })
 })
 
@@ -124,12 +84,6 @@ describe('VIEW ALL ARTICLE', () => {
             .end((req, res) => { res.body.should.be.a('object'); })
         done()
     })
-    it('Return status 500', (done) =>{
-        chai.request(app)
-            .get('/api/v1/feeds')
-            .end ((err, res) => {res.should.have.status(500);})
-            done()
-    })
 })
 
 describe('VIEW SINGLE ARTICLE', () => {
@@ -144,11 +98,5 @@ describe('VIEW SINGLE ARTICLE', () => {
             .get('/api/v1/articles/:articleid')
             .end((req, res) => { res.body.should.be.a('object'); })
         done()
-    })
-    it('Return status 500', (done) =>{
-        chai.request(app)
-            .get('/api/v1/articles/:articleid')
-            .end ((err, res) => {res.should.have.status(500);})
-            done()
     })
 })
