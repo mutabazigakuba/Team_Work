@@ -1,0 +1,47 @@
+import '@babel/polyfill';
+import db from '../config/savedb';
+import Helper from '../helpers/helper'
+
+const UserControllerv2 = {
+    async createNewuser(req, res) {
+        const queryText = 'SELECT * FROM users WHERE email=$1';
+        const emailcheck = await db.query(queryText, [req.body.email]);
+        if(!(emailcheck.rows.length === 0)){
+            return res.status(400).send({
+                "status": 400,
+                "message": "email already used",
+            })
+        }
+        const createQuery = `INSERT INTO
+            users(firstname, lastname, email, password, gender, jobtitle, department, address)
+            VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+            returning *`;
+        const values = [
+            req.body.first_name,
+            req.body.last_name,
+            req.body.email,
+            req.body.password,
+            req.body.gender,
+            req.body.job_title,
+            req.body.department,
+            req.body.address
+        ];
+        try {
+            const { rows } = await db.query(createQuery, values);
+            const token = Helper.generateToken(rows[0].id);
+            rows.unshift(token)
+            return res.status(201).send({
+                "status": 201,
+                "message": "user created successfully",
+                "data": rows
+            })
+        } catch (e) {
+            return res.status(500).send({
+                "status": 500,
+                "error": "server error"
+            })
+        }
+    },
+}
+
+export default UserControllerv2;
