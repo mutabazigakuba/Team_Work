@@ -9,7 +9,7 @@ const UserController = {
             return res.status(201).send({
                 "status": 201,
                 "message": "user created successfully",
-                "data": user
+                "data": user.data
             })
         } catch (e) {
             return res.status(500).send({

@@ -23,7 +23,18 @@ class UserModel {
             address: data.body.address,
         };
         this.users.push(newUser);
-        return newUser;
+        return {
+            data: {
+                "token": token,
+                "first_name": newUser.first_name,
+                "last_name": newUser.last_name,
+                "email": newUser.email,
+                "gender": newUser.gender,
+                "job_title": newUser.job_title,
+                "department": newUser.department,
+                "address": newUser.address
+            }
+        };
     }
 
     findOne(id) {
@@ -46,7 +57,7 @@ class UserModel {
             }
         }
 
-        const token = Helper.generateToken(findUser.token)
+        const token = Helper.generateToken(findUser.id)
         return{
             status:true,
             data: {

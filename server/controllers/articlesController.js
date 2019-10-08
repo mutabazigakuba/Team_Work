@@ -1,11 +1,19 @@
 import ArticleModel from '../models/articlesModel';
 import Joi from '@hapi/joi';
 import '@babel/polyfill';
+import jwt from 'jsonwebtoken';
+import User from '../models/userModel';
+
 
 const ArticleController = {
     async createArticle(req, res) {
+
+        const token = req.headers['x-access-token'];
+        const data = jwt.verify(token, process.env.SECRET);
+        const userid = data.data
+
         try {
-            const article = ArticleModel.addNewArticle(req);
+            const article = ArticleModel.addNewArticle(userid, req);
             return res.status(200).send({
                 "status": 200,
                 "message": "article successfully created",
@@ -34,6 +42,7 @@ const ArticleController = {
                 "data": update.data
             })
         } catch (e) {
+            console.log(e)
             return res.status(500).send({
                 "status": 500,
                 "error": "server error"

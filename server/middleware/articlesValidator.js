@@ -4,8 +4,7 @@ const ArticleValidator = {
     createArticles(req, res, next){
         const schema = {
             title: Joi.string().required(),
-            article: Joi.string().min(250).required(),
-            username: Joi.string().required()
+            article: Joi.string().min(150).required(),
         }
         const result = Joi.validate(req.body, schema);
         if (result.error) {
