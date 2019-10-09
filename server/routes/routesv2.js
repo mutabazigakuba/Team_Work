@@ -13,5 +13,6 @@ routesv2.post('/api/v2/auth/signup', userValidator , User.createNewuser);
 routesv2.post('/api/v2/auth/signin', loginValidator, User.login );
 routesv2.post('/api/v2/articles', auth, ArticleValidator.createArticles, Article.createArticle)
 routesv2.delete('/api/v2/articles/:articleid',auth, Article.deletedArticle);
+routesv2.get('/api/v1/feeds',auth, Article.viewAll);
 
 export default routesv2;
