@@ -55,7 +55,6 @@ const UserControllerv2 = {
         try {
             const queryText = 'SELECT * FROM users WHERE email=$1';
             const { rows } = await db.query(queryText, [req.body.email]);
-            console.log(rows)
             if (!rows[0]) {
                 return res.status(400).send({
                     "status": 400,
