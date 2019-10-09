@@ -27,6 +27,30 @@ const ArticleControllerv2 = {
             })
         }
     },
+
+    async viewAll(req, res){
+        const getQuery = `SELECT * FROM articles`;
+        try {
+            const { rows } = await db.query(getQuery);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    "status": 404,
+                    "error": "no articles found"
+                });
+            }
+            return res.status(200).send({
+                "status": 200,
+                "message": "success",
+                "data": rows
+            })
+        } catch (e) {
+            console.log(e)
+            return res.status(500).send({
+                "status": 500,
+                "error": "server error"
+            })
+        }
+    }
 }
 
 export default ArticleControllerv2;
