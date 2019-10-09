@@ -6,7 +6,7 @@ const UserControllerv2 = {
     async createNewuser(req, res) {
         const queryText = 'SELECT * FROM users WHERE email=$1';
         const emailcheck = await db.query(queryText, [req.body.email]);
-        if(!(emailcheck.rows.length === 0)){
+        if (!(emailcheck.rows.length === 0)) {
             return res.status(400).send({
                 "status": 400,
                 "message": "email already used",
@@ -29,11 +29,19 @@ const UserControllerv2 = {
         try {
             const { rows } = await db.query(createQuery, values);
             const token = Helper.generateToken(rows[0].id);
-            rows.unshift(token)
             return res.status(201).send({
                 "status": 201,
                 "message": "user created successfully",
-                "data": rows
+                "data": {
+                    "token": token,
+                    "firstname": rows[0].firstname,
+                    "lastname": rows[0].lastname,
+                    "email":  rows[0].email,
+                    "gender": rows[0].gender,
+                    "jobtitle": rows[0].jobtitle,
+                    "department": rows[0].department,
+                    "address":rows[0].address
+                }
             })
         } catch (e) {
             return res.status(500).send({
@@ -42,6 +50,45 @@ const UserControllerv2 = {
             })
         }
     },
+
+    async login(req, res) {
+        try {
+            const queryText = 'SELECT * FROM users WHERE email=$1';
+            const { rows } = await db.query(queryText, [req.body.email]);
+            if (!rows[0]) {
+                return res.status(400).send({
+                    "status": 400,
+                    "error": "credentials are wrong"
+                });
+            }
+            if (!(rows[0].password === req.body.password)) {
+                return res.status(400).send({
+                    "status": 400,
+                    "error": "password is invalid"
+                });
+            }
+            const token = Helper.generateToken(rows[0].id);
+            return res.status(200).send({
+                "status": 200,
+                "data": {
+                    "token": token,
+                    "firstname": rows[0].firstname,
+                    "lastname": rows[0].lastname,
+                    "email":  rows[0].email,
+                    "gender": rows[0].gender,
+                    "jobtitle": rows[0].jobtitle,
+                    "department": rows[0].department,
+                    "address":rows[0].address
+                }
+            });
+        } catch (e) {
+            console.log(e)
+            return res.status(500).send({
+                "status": 500,
+                "error": "server error"
+            })
+        }
+    }
 }
 
 export default UserControllerv2;
