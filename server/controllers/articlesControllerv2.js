@@ -27,6 +27,23 @@ const ArticleControllerv2 = {
             })
         }
     },
+    async deletedArticle(req, res) {
+        const findarticle = 'SELECT * FROM articles WHERE id=$1';
+        try {
+            const { rows } = await db.query(findarticle, [req.params.articleid]);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    "status": 404,
+                    "error": "article not found"
+                });
+            }
+            const deleteQuery = 'DELETE FROM articles WHERE id=$1 returning *';
+            const { row } = await db.query(deleteQuery, [req.params.articleid]);
+            console.log(row[0])
+            return res.status(204).send({
+                "status": 204,
+                "message": "article successfully deleted"
+            });
 
     async viewAll(req, res){
         const getQuery = `SELECT * FROM articles`;
@@ -50,7 +67,7 @@ const ArticleControllerv2 = {
                 "error": "server error"
             })
         }
-    }
+    },
 }
 
 export default ArticleControllerv2;
