@@ -1,6 +1,5 @@
 import '@babel/polyfill';
 import db from '../config/savedb';
-import Helper from '../helpers/helper';
 
 const ArticleControllerv2 = {
     async createArticle(req, res) {
@@ -39,8 +38,8 @@ const ArticleControllerv2 = {
             }
             const updatequery = `UPDATE articles SET title=$1, article=$2 WHERE id=$3 returning *`;
             const values = [
-                req.body.title, 
-                req.body.article, 
+                req.body.title,
+                req.body.article,
                 req.params.articleid
             ];
             const data = await db.query(updatequery, values);
@@ -49,7 +48,28 @@ const ArticleControllerv2 = {
                 "data": data.rows[0]
             });
         } catch (e) {
-            console.log(e)
+            return res.status(500).send({
+                "status": 500,
+                "error": "server error"
+            })
+        }
+    },
+    async viewAll(req, res) {
+        const getQuery = `SELECT * FROM articles`;
+        try {
+            const { rows } = await db.query(getQuery);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    "status": 404,
+                    "error": "no articles found"
+                });
+            }
+            return res.status(200).send({
+                "status": 200,
+                "message": "success",
+                "data": rows
+            })
+        } catch (e) {
             return res.status(500).send({
                 "status": 500,
                 "error": "server error"
@@ -68,35 +88,16 @@ const ArticleControllerv2 = {
             }
             const deleteQuery = 'DELETE FROM articles WHERE id=$1 returning *';
             const { row } = await db.query(deleteQuery, [req.params.articleid]);
-            console.log(row[0])
             return res.status(204).send({
                 "status": 204,
                 "message": "article successfully deleted"
             });
-
-    async viewAll(req, res){
-        const getQuery = `SELECT * FROM articles`;
-        try {
-            const { rows } = await db.query(getQuery);
-            if (!rows[0]) {
-                return res.status(404).send({
-                    "status": 404,
-                    "error": "no articles found"
-                });
-            }
-            return res.status(200).send({
-                "status": 200,
-                "message": "success",
-                "data": rows
-            })
         } catch (e) {
-            console.log(e)
             return res.status(500).send({
                 "status": 500,
                 "error": "server error"
             })
         }
-    },
+    }
 }
-
 export default ArticleControllerv2;
