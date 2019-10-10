@@ -34,6 +34,28 @@
         #mainBody {
             padding: 50px 20px 100px 15%;
         }
+        @media (min-width: 320px) and (max-width: 480px) {
+            #mainBody {
+                display: flex;
+                min-height: 500px;
+                padding: 10px 0px 5% 1%;
+            }
+            #carousel img {
+            height: 250px;
+            width: 100%;
+            }
+        }
+        @media (min-width: 481px) and (max-width: 767px) {
+            #mainBody {
+                display: flex;
+                min-height: 500px;
+                padding: 10px 0px 5% 1%;
+            }
+            #carousel img {
+            height: 250px;
+            width: 100%;
+            }
+        }
 
         #categories a,
         a:visited,
@@ -43,9 +65,17 @@
             ;
         }
 
-        #categories,
-        #views {
+        #views a,
+        a:visited,
+        a:hover,
+        a:active {
             background: transparent;
+            ;
+        }
+
+        #categories,
+        #views, ul, li {
+            background: #777;
         }
     </style>
     <script src="main.js"></script>
@@ -57,7 +87,7 @@
     </div>
     <div class="" id="belowTopSection">
         <div class="" id="navbar">
-            <a href="../index.html"> HOME</a>
+            <a href="./my_articles.html"> HOME</a>
             <a href="./post.html"> POST</a>
             <a href="./my_articles.html"> MY ARTICLES</a>
             <a href=""> ARTICLES </a>
