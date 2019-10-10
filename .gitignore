@@ -1,3 +1,7 @@
 .vscode
+.env
+.nyc_output
+node_modules
 node_modules
 .coveralls.yml
+
