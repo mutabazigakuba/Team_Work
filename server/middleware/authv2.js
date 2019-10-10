@@ -6,9 +6,9 @@ import Helper from '../helpers/helper'
 export default async (req, res, next) =>{
     const token = req.headers['x-access-token'];
     if(!token){
-        return res.status(500).send({ 
-            "error": '500',
-            "message": 'Server error. token missing' 
+        return res.status(401).send({ 
+            "error": 401,
+            "message": ' token missing' 
         })
     }
     
@@ -18,7 +18,7 @@ export default async (req, res, next) =>{
         const user = await db.query(queryText, [data.data]);
         if (!user) {
             return res.status(401).send({ 
-                error: 'Not authorized to access' 
+                error: 'not authorized to access resource' 
             })
         }
         req.user = user;

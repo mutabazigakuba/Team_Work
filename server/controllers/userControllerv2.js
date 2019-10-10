@@ -56,20 +56,20 @@ const UserControllerv2 = {
             const queryText = 'SELECT * FROM users WHERE email=$1';
             const { rows } = await db.query(queryText, [req.body.email]);
             if (!rows[0]) {
-                return res.status(400).send({
-                    "status": 400,
+                return res.status(406).send({
+                    "status": 406,
                     "error": "credentials are wrong"
                 });
             }
             if (!(rows[0].password === req.body.password)) {
-                return res.status(400).send({
-                    "status": 400,
+                return res.status(406).send({
+                    "status": 406,
                     "error": "password is invalid"
                 });
             }
             const token = Helper.generateToken(rows[0].id);
-            return res.status(200).send({
-                "status": 200,
+            return res.status(202).send({
+                "status": 202,
                 "data": {
                     "token": token,
                     "firstname": rows[0].firstname,

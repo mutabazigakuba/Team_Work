@@ -3,8 +3,8 @@ import Joi from '@hapi/joi';
 const ArticleValidator = {
     createArticles(req, res, next){
         const schema = {
-            title: Joi.string().required(),
-            article: Joi.string().min(150).required(),
+            title: Joi.string().required().trim(),
+            article: Joi.string().min(150).required().trim(),
         }
         const result = Joi.validate(req.body, schema);
         if (result.error) {
@@ -18,8 +18,8 @@ const ArticleValidator = {
 
     updateArticle(req,res, next){
         const schema = {
-            title: Joi.string().required(),
-            article: Joi.string().min(250).required(),
+            title: Joi.string().required().trim(),
+            article: Joi.string().min(250).required().trim(),
         }
         const result = Joi.validate(req.body, schema);
         if (result.error) {
@@ -33,7 +33,7 @@ const ArticleValidator = {
 
     createComment(req,res, next){
         const schema = {
-            comment: Joi.string().required(),
+            comment: Joi.string().required().trim(),
         }
         const result = Joi.validate(req.body, schema);
         if (result.error) {
@@ -47,7 +47,7 @@ const ArticleValidator = {
 
     displayOne(req, res, next){
         const schema = {
-            articleid: Joi.number()
+            articleid: Joi.number().trim()
         }
         const result = Joi.validate(req.params, schema);
         if (result.error) {

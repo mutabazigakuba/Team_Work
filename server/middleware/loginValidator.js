@@ -2,8 +2,8 @@ import Joi from '@hapi/joi';
 
 export default (req, res, next)=>{
     const schema = {
-        email: Joi.string().email().required(),
-        password: Joi.string().min(6).required(),
+        email: Joi.string().email().required().trim(),
+        password: Joi.string().min(6).required().trim(),
     }
     const result = Joi.validate(req.body, schema);
     if (result.error) {

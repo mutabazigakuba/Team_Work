@@ -2,14 +2,14 @@ import Joi from '@hapi/joi';
 
 export default (req, res, next)=>{
     const schema = {
-        first_name: Joi.string().required(),
-        last_name: Joi.string().required(),
-        email: Joi.string().email().required(),
-        password: Joi.string().min(6).required(),
-        gender: Joi.string().required(),
-        job_title: Joi.string().required(),
-        department: Joi.string().required(),
-        address: Joi.string().required(),
+        first_name: Joi.string().required().trim(),
+        last_name: Joi.string().required().trim(),
+        email: Joi.string().email().required().trim(),
+        password: Joi.string().min(6).required().trim(),
+        gender: Joi.string().required().trim(),
+        job_title: Joi.string().required().trim(),
+        department: Joi.string().required().trim(),
+        address: Joi.string().required().trim(),
     }
     const result = Joi.validate(req.body, schema);
     if (result.error) {

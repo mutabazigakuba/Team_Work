@@ -41,9 +41,9 @@ const ArticleControllerv2 = {
                 });
             }
             if(req.user.rows[0].id != rows[0].userid){
-                return res.status(400).send({
-                    "status": 400,
-                    "error": " not allowed"
+                return res.status(401).send({
+                    "status": 401,
+                    "error": " not authorized"
                 });
             }
             const updatequery = `UPDATE articles SET title=$1, article=$2 WHERE id=$3 returning *`;
@@ -65,7 +65,7 @@ const ArticleControllerv2 = {
         }
     },
     async viewAll(req, res) {
-        const getQuery = `SELECT * FROM articles`;
+        const getQuery = `SELECT * FROM articles ORDER BY id DESC `;
         try {
             const { rows } = await db.query(getQuery);
             if (!rows[0]) {
@@ -97,15 +97,15 @@ const ArticleControllerv2 = {
                 });
             }
             if(req.user.rows[0].id != rows[0].userid){
-                return res.status(400).send({
-                    "status": 400,
+                return res.status(401).send({
+                    "status": 401,
                     "error": " not allowed"
                 });
             }
             const deleteQuery = 'DELETE FROM articles WHERE id=$1 returning *';
             const { row } = await db.query(deleteQuery, [req.params.articleid]);
-            return res.status(204).send({
-                "status": 204,
+            return res.status(202).send({
+                "status": 202,
                 "message": "article successfully deleted"
             });
         } catch (e) {
@@ -136,8 +136,8 @@ const ArticleControllerv2 = {
             ]
 
             const data = await db.query(createQuerys, values);
-            return res.status(200).send({
-                "status": 200,
+            return res.status(201).send({
+                "status": 201,
                 "message": "comment created successfully",
                 "data": {
                     "comment": data.rows[0].comment
