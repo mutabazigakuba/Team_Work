@@ -7,7 +7,7 @@
     "createtables": "node --require @babel/register server/migrations/createTables.js",
     "test": "nyc --require @babel/register mocha server/**/**/**tests.js --exit",
     "build": "babel server -d build",
-    "start": "createtables && babel-node server/index.js",
+    "start": "npm run createtables && babel-node server/index.js",
     "dev": "nodemon --exec babel-node server/index.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
