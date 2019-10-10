@@ -30,7 +30,7 @@ const createTable = async () => {
             );
             `;
             const answer = await pool.query(queryText);
-            console.log("Tables created Successfully" +answer);
+            console.log("tables created successfully" +answer);
     }catch(e){
         return e.message;
     }

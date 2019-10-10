@@ -16,5 +16,6 @@ routesv2.patch('/api/v2/articles/:articleid', auth, ArticleValidator.updateArtic
 routesv2.delete('/api/v2/articles/:articleid',auth, Article.deletedArticle);
 routesv2.get('/api/v2/feeds',auth, Article.viewAll);
 routesv2.post('/api/v2/articles/:articleid/comments', auth, ArticleValidator.createComment, Article.createComment);
+routesv2.get('/api/v2/articles/:articleid',auth, ArticleValidator.displayOne, Article.displayOne);
 
 export default routesv2;

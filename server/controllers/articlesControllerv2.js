@@ -149,6 +149,30 @@ const ArticleControllerv2 = {
                 "error": "server error"
             })
         }
+    },
+
+    async displayOne(req, res){
+        try{
+            const findarticle = 'SELECT * FROM articles WHERE id=$1';
+            const { rows } = await db.query(findarticle, [req.params.articleid]);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    "status": 404,
+                    "error": "article not found"
+                });
+            }
+            const findcomments = 'SELECT * FROM comments WHERE articleid=$1';
+            const data = await db.query(findcomments, [req.params.articleid]);
+            return res.status(200).send({
+                "status": 200,
+                "message": "comment created successfully",
+                "data": {
+                    "comment": data.rows
+                }
+            })
+        }catch(e){
+
+        }
     }
 }
 export default ArticleControllerv2;
