@@ -19,24 +19,20 @@ const createTable = async () => {
                 id BIGSERIAL UNIQUE NOT NULL PRIMARY KEY,
                 createdon DATE DEFAULT CURRENT_DATE,
                 title VARCHAR(50),
-                article TEXT
+                article TEXT,
+                userid INT REFERENCES users(id)
             );
             CREATE TABLE IF NOT EXISTS comments(
                 id BIGSERIAL UNIQUE NOT NULL PRIMARY KEY,
                 createdon DATE DEFAULT CURRENT_DATE,
-                articleid VARCHAR(50),
-                articletitle VARCHAR(50),
-                comment TEXT,
-                username VARCHAR(50),
-                email VARCHAR(50) UNIQUE NOT NULL
+                articleid VARCHAR(50) REFERENCES articles(id),
+                comment TEXT
             );
             `;
             const answer = await pool.query(queryText);
             console.log("Tables created Successfully" +answer);
     }catch(e){
-        return e;
+        return e.message;
     }
-    
 }
-
 createTable();

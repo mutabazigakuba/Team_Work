@@ -4,19 +4,23 @@ import db from '../config/savedb';
 const ArticleControllerv2 = {
     async createArticle(req, res) {
         const createQuery = `INSERT INTO
-            articles(title, article)
-            VALUES($1, $2)
+            articles(title, article, userid)
+            VALUES($1, $2, $3)
             returning *`;
         const values = [
             req.body.title,
             req.body.article,
+            req.user.rows[0].id
         ];
         try {
             const { rows } = await db.query(createQuery, values);
             return res.status(200).send({
                 "status": 200,
                 "message": "article successfully created",
-                "data": rows
+                "data": {
+                    "title": rows[0].title,
+                    "article": rows[0].article 
+                }
             })
         } catch (e) {
             return res.status(500).send({
@@ -34,6 +38,12 @@ const ArticleControllerv2 = {
                 return res.status(404).send({
                     "status": 404,
                     "error": "article not found"
+                });
+            }
+            if(req.user.rows[0].id != rows[0].userid){
+                return res.status(400).send({
+                    "status": 400,
+                    "error": " not allowed"
                 });
             }
             const updatequery = `UPDATE articles SET title=$1, article=$2 WHERE id=$3 returning *`;
@@ -86,6 +96,12 @@ const ArticleControllerv2 = {
                     "error": "article not found"
                 });
             }
+            if(req.user.rows[0].id != rows[0].userid){
+                return res.status(400).send({
+                    "status": 400,
+                    "error": " not allowed"
+                });
+            }
             const deleteQuery = 'DELETE FROM articles WHERE id=$1 returning *';
             const { row } = await db.query(deleteQuery, [req.params.articleid]);
             return res.status(204).send({
@@ -94,6 +110,41 @@ const ArticleControllerv2 = {
             });
         } catch (e) {
             return res.status(500).send({
+                "status": 500,
+                "error": "server error"
+            })
+        }
+    },
+
+    async createComment(req, res) {
+        const findarticle = 'SELECT * FROM articles WHERE id=$1';
+        try {
+            const { rows } = await db.query(findarticle, [req.params.articleid]);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    "status": 404,
+                    "error": "article not found"
+                });
+            }
+            const createQuerys = `INSERT INTO
+            comments(articleid, comment)
+            VALUES($1, $2)
+            returning *`;
+            const values = [
+                rows[0].id,
+                req.body.comment,
+            ]
+
+            const data = await db.query(createQuerys, values);
+            return res.status(200).send({
+                "status": 200,
+                "message": "comment created successfully",
+                "data": {
+                    "comment": data.rows[0].comment
+                }
+            })
+        } catch (error) {
+            res.status(500).send({
                 "status": 500,
                 "error": "server error"
             })

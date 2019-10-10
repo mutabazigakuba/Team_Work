@@ -4,7 +4,7 @@ import routesv2 from './routes/routesv2';
 import body_parser from 'body-parser';
 
 const app = express()
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 app.use(express.json())
 app.use(body_parser.urlencoded({extended: true}));

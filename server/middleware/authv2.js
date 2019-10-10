@@ -11,8 +11,9 @@ export default async (req, res, next) =>{
             "message": 'Server error. token missing' 
         })
     }
-    const data = jwt.verify(token, process.env.SECRET)
+    
     try {
+        const data = jwt.verify(token, process.env.SECRET)
         const queryText = 'SELECT * FROM users WHERE id=$1';
         const user = await db.query(queryText, [data.data]);
         if (!user) {
@@ -20,10 +21,12 @@ export default async (req, res, next) =>{
                 error: 'Not authorized to access' 
             })
         }
+        req.user = user;
         next()
     }catch(e){
-        return res.status(401).send({ 
-            error: 'Server error' 
+        return res.status(400).send({ 
+            error: 400,
+            "message": e.message
         })
     }
 }

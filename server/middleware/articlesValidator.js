@@ -34,8 +34,6 @@ const ArticleValidator = {
     createComment(req,res, next){
         const schema = {
             comment: Joi.string().required(),
-            username: Joi.string().required(),
-            email: Joi.string().email().required()
         }
         const result = Joi.validate(req.body, schema);
         if (result.error) {
