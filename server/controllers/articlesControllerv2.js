@@ -167,6 +167,8 @@ const ArticleControllerv2 = {
                 "status": 200,
                 "message": "comment created successfully",
                 "data": {
+                    "title": rows[0].title,
+                    "article": rows[0].article,
                     "comment": data.rows
                 }
             })

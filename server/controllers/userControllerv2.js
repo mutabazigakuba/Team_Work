@@ -7,8 +7,8 @@ const UserControllerv2 = {
         const queryText = 'SELECT * FROM users WHERE email=$1';
         const emailcheck = await db.query(queryText, [req.body.email]);
         if (!(emailcheck.rows.length === 0)) {
-            return res.status(400).send({
-                "status": 400,
+            return res.status(409).send({
+                "status": 409,
                 "message": "email already used",
             })
         }

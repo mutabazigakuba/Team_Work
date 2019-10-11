@@ -47,7 +47,7 @@ const ArticleValidator = {
 
     displayOne(req, res, next){
         const schema = {
-            articleid: Joi.number().trim()
+            articleid: Joi.number()
         }
         const result = Joi.validate(req.params, schema);
         if (result.error) {
