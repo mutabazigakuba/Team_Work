@@ -25,3 +25,6 @@ And others like babel, Joi, nodemon, chai, chai-http, sort-json-array.
   3.2. For the backend, navigate into your folder from the node-cli and run `npm run dev` or `npm run start`
 4. For the back end, you need to first install all the listed libraries above.
 
+#### How to view site
+[TeamWork](https://mutabazigakuba.github.io/Team_Work/UI/index.html)
+
